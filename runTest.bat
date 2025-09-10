@@ -27,15 +27,11 @@ if not exist %EXECUTABLE% (
     exit /b 1
 )
 
-echo %INPUT_NAME%
 set "INPUT_FILE=text_in/%INPUT_NAME%"
-echo %INPUT_FILE%
 
 REM Create a output file name
 set OUTPUT_FILE=%INPUT_FILE:.txt=_output.txt%
 set OUTPUT_FILE=%OUTPUT_FILE:in=out%
-
-echo %OUTPUT_FILE%
 
 REM Check if input file exists
 if not exist test_in/%INPUT_FILE% (
@@ -45,9 +41,6 @@ if not exist test_in/%INPUT_FILE% (
     )
     exit /b 1
 )
-
-REM Create a output file name
-set OUTPUT_FILE= %INPUT_FILE:.txt=_output.txt%
 
 echo --- Running test with input from: %INPUT_FILE% ---
 
