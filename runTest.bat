@@ -16,9 +16,9 @@ if "%1"=="" (
 
 REM Set the input file name
 if "%2"=="" (
-    set "INPUT_FILE=test.txt"
+    set "INPUT_NAME=test.txt"
 ) else (
-    set "INPUT_FILE=%2"
+    set "INPUT_NAME=%2"
 )
 
 REM Check if executable file exists
@@ -26,6 +26,16 @@ if not exist %EXECUTABLE% (
     echo Error: Executable file not found
     exit /b 1
 )
+
+echo %INPUT_NAME%
+set "INPUT_FILE=text_in/%INPUT_NAME%"
+echo %INPUT_FILE%
+
+REM Create a output file name
+set OUTPUT_FILE=%INPUT_FILE:.txt=_output.txt%
+set OUTPUT_FILE=%OUTPUT_FILE:in=out%
+
+echo %OUTPUT_FILE%
 
 REM Check if input file exists
 if not exist test_in/%INPUT_FILE% (
@@ -42,7 +52,7 @@ set OUTPUT_FILE= %INPUT_FILE:.txt=_output.txt%
 echo --- Running test with input from: %INPUT_FILE% ---
 
 REM Run the test itself
-"%EXECUTABLE%" < "test_in/%INPUT_FILE%" > "test_out/%OUTPUT_FILE%"
+"%EXECUTABLE%" < "%INPUT_FILE%" > "%OUTPUT_FILE%"
 
 REM Check the exit status of the previous command
 if errorlevel 1 (
