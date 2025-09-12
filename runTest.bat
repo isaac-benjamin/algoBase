@@ -34,7 +34,7 @@ set OUTPUT_FILE=%INPUT_FILE:.txt=_output.txt%
 set OUTPUT_FILE=%OUTPUT_FILE:in=out%
 
 REM Check if input file exists
-if not exist test_in/%INPUT_FILE% (
+if not exist %INPUT_FILE% (
     echo Error: Input file not found
     if "%2"=="" (
         echo Default value for input file is 'test.txt'

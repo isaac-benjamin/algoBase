@@ -1,0 +1,12 @@
+{
+    "C_Cpp.default.compilerPath": "",
+    "files.associations": {
+        "ranges": "cpp",
+        "variant": "cpp",
+        "array": "cpp",
+        "string_view": "cpp",
+        "format": "cpp",
+        "initializer_list": "cpp",
+        "span": "cpp"
+    }
+}
