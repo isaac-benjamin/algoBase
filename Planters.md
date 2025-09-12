@@ -1,9 +1,3 @@
-(a) a verbal description of your algorithm,
-(b) a corresponding pseudo code,
-(c) a sketch of a proof of correctness of your algorithm (i.e., an argument that your algorithm always produces the desired answer),
-(d) a tight running time estimate for your algorithm, and
-(e) a brief reasoning behind the running time estimate.
-
 # Planters
 
 My code works by iteratively comparing the two largest members of the empty containers and the growing plants. If the largest empty container is larger than the largest growing plant, then both numbers are removed from their arrays, then the plant size is added to the empty array (representative of repotting the plant and using its old container). If, at any point, the largest empty container is smaller than the largest plant, there is no valid configuration. When the plants array has a size of zero the configuration is concluded to be valid, because every plant found a new home.
