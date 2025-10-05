@@ -43,6 +43,10 @@ struct Array{
         return pointer[0];
     }
 
+    void setZeroth (T element){
+        pointer[0] = element;
+    }
+
     /*
         Start - inclusive
         end - exclusive
