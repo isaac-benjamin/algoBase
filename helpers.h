@@ -1,5 +1,6 @@
 #include <iostream>
 #include <climits> 
+#include <bits/stdc++.h>
 
 using namespace std;
 
@@ -35,7 +36,7 @@ struct Array{
             return pointer[1];
         } else {
             throw out_of_range("Invalid range, greater than length or less than 0");
-            return 0; 
+            // return 0; 
         }
     }
 
@@ -126,6 +127,19 @@ Array<T> readInArray(){
     T currentRead;
     while (cin>>currentRead){
         input.add(currentRead);
+    }
+    return input;
+}
+
+template <typename T>
+Array<T> readInArray( T(*f)(T) ){
+    int size;
+    cin>>size;
+    Array<T> input = Array<T>(size);
+    string currentRead; // What type is this??
+    while (cin>>currentRead){
+        T newAddition = f(currentRead);
+        input.add(newAddition);
     }
     return input;
 }
