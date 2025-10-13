@@ -30,10 +30,6 @@ struct Array{
     T get (int index){
         if(index > 0 && index <= len){
             return pointer[index];
-        } else if (index == 0){
-            return pointer[len]; 
-        }else if (index == len+1 && len>=1){
-            return pointer[1];
         } else {
             throw out_of_range("Invalid range, greater than length or less than 0");
             // return 0; 
