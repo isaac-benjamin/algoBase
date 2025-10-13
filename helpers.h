@@ -11,7 +11,7 @@ struct Array{
     int len; // Amount of objects currently in the array (Not including 0 index)
     int maxSize; // Max allocated size of the arrray  (Not including 0 index)
 
-    Array(int size){ //Size is number of open slots after the 0 index
+    Array(int size=0){ //Size is number of open slots after the 0 index
         pointer = new T[size+1];
         len=0;
         maxSize = size;
@@ -27,17 +27,43 @@ struct Array{
         }
     }
 
+    // @brief Adds the contents of the passed array to the current array
+    int add( Array<T> otherArray){
+        if(len + otherArray.len > maxSize){
+            throw out_of_range("The addend array has to many elements to fit within max size");
+            return -1;
+        }
+        for (int i = 1; i <= otherArray.len; i++)
+        {
+            add(otherArray.get(i));
+        }
+        return len;
+        
+    }
+
     T get (int index){
-        if(index > 0 && index <= len){
+        if(index >= 0 && index <= len){
             return pointer[index];
         } else {
-            throw out_of_range("Invalid range, greater than length or less than 0");
+            throw out_of_range("Invalid range, index must be between 0 and length");
             // return 0; 
         }
     }
 
-    T getZeroth(){
-        return pointer[0];
+    T remove (){
+        return pointer[len--];
+    }
+
+    void set (int index, T val){
+        if (index<=len && index>0){
+            pointer[index]=val;
+        }else{
+            throw out_of_range("Invalid range, index must be between 0 and length");
+        }
+    }
+
+    void removeAll(){
+        len=0;
     }
 
     void setZeroth (T element){
@@ -59,7 +85,7 @@ struct Array{
     }
 
     void print(bool endLines = false){
-        cout << "Printing array: ";
+        cout << "Printing array: "<<endl;
         for(int i=1; i<=len; i++ ){
             cout << pointer[i];
             if( !(endLines || i == len) ){
@@ -69,6 +95,10 @@ struct Array{
                 cout << endl;
             }
         }
+    }
+
+    ~Array(){
+        delete[] pointer;
     }
 };
 
