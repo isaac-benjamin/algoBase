@@ -10,19 +10,20 @@ using namespace std;
 template <typename T>
 struct Array{
     //Change this to be a unique pointer
-    T* pointer;
+    unique_ptr<T[]> pointer;
     int len; // Amount of objects currently in the array (Not including 0 index)
     int maxSize; // Max allocated size of the arrray  (Not including 0 index)
 
     Array(int size=0){ //Size is number of open slots after the 0 index
-        pointer = new T[size+1];
+        pointer = make_unique<T[]>(size+1);
         len=0;
         maxSize = size;
     }
 
+    //Copy constructor
     Array( Array<T>& original){
         maxSize = original.maxSize;
-        pointer = new T[original.maxSize];
+        pointer = make_unique<T[]>(original.maxSize+1);
         len = original.len;
         for (int i = 1; i <= original.len; i++){
             pointer[i] = original.get(i);
@@ -76,6 +77,7 @@ struct Array{
 
     void removeAll(){
         len=0;
+        pointer = make_unique<T[]>(maxSize+1);
     }
 
     void setZeroth (T element){
@@ -109,13 +111,11 @@ struct Array{
         }
     }
 
-    //assignment operator overload
+    //Copy assignment operator
     Array& operator=(const Array& other){
         if(this!= &other){
-            delete[] pointer;
-
             maxSize = other.maxSize;
-            pointer = new T[maxSize+1];
+            pointer = make_unique<T[]>(other.maxSize+1);
             len = other.len;
 
             for (int i = 1; i <= len; i++){
@@ -127,7 +127,7 @@ struct Array{
 
     //Move constructor
     Array(Array<T>&& other) noexcept{
-        pointer = other.pointer;
+        pointer = move(other.pointer);
         maxSize = other.maxSize;
         len = other.len;
 
@@ -139,11 +139,10 @@ struct Array{
     //Move assignment operator
     Array<T>& operator= (Array<T>&& other) noexcept{
         if(this!= &other){
-            delete[] pointer;
-            pointer = other.pointer;
+            pointer = move(other.pointer);
             len= other.len;
             maxSize=other.maxSize;
-            other.pointer=nullptr;
+
             other.maxSize = 0;
             other.len = 0;
         }
@@ -151,14 +150,9 @@ struct Array{
     }
 
     ~Array(){
-        if(pointer){
-            delete[] pointer;
-            clog << "Destructor called on " << pointer <<endl;
-        }else{
-            clog << "????" <<endl;
-        }
-        pointer = nullptr;
+        
     }
+
 };
 
 template <typename T>

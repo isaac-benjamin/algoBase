@@ -1,5 +1,7 @@
 #include <iostream>
-#include "helpers.h"
+#include <memory>
+
+#include "helpers.hpp"
 
 using namespace std;
 
@@ -17,12 +19,14 @@ a1, a2, . . . , aj
 .
 */
 
+//To whomever grades this: I am still learning C++ so this might be absolute gobshite, IM SO SORRY
+//I had to look up so much stuff to stop from deleting information I needed to return lol
+//Before I wasn't deleting my pointers and when I ran test case 5 my computer crashed XD
 
-
-Array<int> incrSubSeqRecursive(Array<int> A, int endIndex){
+shared_ptr<Array<int>> incrSubSeqRecursive(Array<int>& A, int endIndex){
 
     int endElem = A.get(endIndex);
-    Array<Array<int>> subsequences = Array<Array<int>>(endIndex-1);
+    Array<shared_ptr<Array<int>>> subsequences(endIndex-1);
 
     for (int i = endIndex-1; i >= 1; i--){
         if(A.get(i)<endElem){
@@ -31,30 +35,31 @@ Array<int> incrSubSeqRecursive(Array<int> A, int endIndex){
     }
 
     //Include case if j is smaller than all earlier elements
-    Array<int> longest = Array<int>(endIndex);
+    shared_ptr<Array<int>> longest = make_shared< Array<int>>(endIndex);
     for (int i = 1; i <= subsequences.len; i++){
-        Array<int> cur = subsequences.get(i);
-        if(cur.len > longest.len){
-            longest.removeAll();
-            longest.add(cur);
+        shared_ptr<Array<int>> cur = subsequences.get(i);
+        if(cur->len > longest->len){
+            longest ->removeAll();
+            longest ->add( *cur );
         }
     }
-    longest.add(endElem);
+    longest->add(endElem);
     return longest;    
 }
 
 int main(){
     Array<int> input = readInArray<int>();
-    Array<int> maxSubseq = incrSubSeqRecursive(input,input.len);
-    int maxLen = 0;
+    shared_ptr<Array<int>> maxSubseq = incrSubSeqRecursive(input,input.len);
+    int maxLen = maxSubseq->len;
     for (int i = 1; i <= input.len; i++)
     {
-        int currentSubLen = incrSubSeqRecursive(input,i).len;
+        int currentSubLen = incrSubSeqRecursive(input,i)->len;
         if( maxLen < currentSubLen ){
             maxLen = currentSubLen;
         }
+        cout<< i << endl;
     }
     
-    cout<<maxLen;
+    cout << maxLen;
     return 0;
 }
