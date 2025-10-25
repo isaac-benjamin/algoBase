@@ -31,7 +31,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
-            "args": ["<","${workspaceFolder}/text_in/input-2.1.txt"],
+            "args": ["<","${workspaceFolder}/timeTests/100.txt"],
             "stopAtEntry": false,
             "cwd": "C:/Whatnot/mingw64/bin",
             "environment": [],

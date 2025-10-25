@@ -1,5 +1,6 @@
 #include <iostream>
 #include "helpers.hpp"
+#include "TimeTrack.cpp"
 
 using namespace std;
 
@@ -24,8 +25,11 @@ int incrSubSeqDP(Array<int> A){
 }
 
 int main(){
-    Array<int> input = readInArray<int>();
-    int max = incrSubSeqDP(input);
-    cout<<max;
+    // Array<int> input = readInArray<int>();
+    // int max = incrSubSeqDP(input);
+    // cout<<max;
+    
+    timeDPfunction(&incrSubSeqDP);
+
     return 0;
 }

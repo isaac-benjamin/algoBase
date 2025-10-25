@@ -1,5 +1,17 @@
 # Hopscotch
 
+### WHAT:
+
+S[j] = max possible score attainable up to/including this point
+
+### HOW: 
+
+S[j] = __max__ {S[ j-1 ], S[j-2 ] + $w_j$, S[ j-3 ] + $w_j$}
+
+### WHERE:
+
+S[n]
+
 This algorithm uses DP to store the maximum possible sum for each index on the hopscotch line by comparing the max sum of the previous square, the weight of the current square plus the max weight of the squares 2 and 3 jumps behind, respectively. Then the max sum of that index is chosen by picking the max of the three choices listed.
 
 ## Pseudocode

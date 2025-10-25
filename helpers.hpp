@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <climits> 
 #include <bits/stdc++.h>
@@ -15,22 +16,25 @@ struct Array{
     int maxSize; // Max allocated size of the arrray  (Not including 0 index)
 
     Array(int size=0){ //Size is number of open slots after the 0 index
+        std::clog << "[Array default ctor] this=" << this << " size=" << size << "\n";
         pointer = make_unique<T[]>(size+1);
         len=0;
         maxSize = size;
     }
 
-    //Copy constructor
-    Array( Array<T>& original){
+    // @brief Copy constructor (take const ref and allocate same capacity as original)
+    Array(const Array<T>& original){
+        std::clog << "[Array copy ctor] this=" << this << " from=" << &original 
+                  << " maxSize=" << original.maxSize << "\n";
         maxSize = original.maxSize;
-        pointer = make_unique<T[]>(original.maxSize+1);
+        pointer = make_unique<T[]>(original.maxSize + 1);
         len = original.len;
         for (int i = 1; i <= original.len; i++){
             pointer[i] = original.get(i);
         }
     }
 
-    int add( T newItem){
+    int add(const T& newItem){
         if(len == maxSize){
             return -1;
         }else{
@@ -41,7 +45,7 @@ struct Array{
     }
 
     // @brief Adds the contents of the passed array to the current array
-    int add( Array<T> otherArray){
+    int add(const Array<T>& otherArray){
         if(len + otherArray.len > maxSize){
             throw out_of_range("The addend array has to many elements to fit within max size");
             return -1;
@@ -52,15 +56,6 @@ struct Array{
         }
         return len;
         
-    }
-
-    T get (int index){
-        if(index >= 0 && index <= len){
-            return pointer[index];
-        } else {
-            throw out_of_range("Invalid range, index must be between 0 and length");
-            // return 0; 
-        }
     }
 
     T remove (){
@@ -75,6 +70,15 @@ struct Array{
         }
     }
 
+    T get (int index) const {
+        if(index >= 0 && index <= len){
+            return pointer[index];
+        } else {
+            throw out_of_range("Invalid range, index must be between 0 and length");
+        }
+    }
+        // accessor
+    
     void removeAll(){
         len=0;
         pointer = make_unique<T[]>(maxSize+1);
@@ -91,7 +95,7 @@ struct Array{
     */
     Array<T> subSet(int start, int end){
         Array<T> miniArray(end-start);
-        for (int i = 0; i <= miniArray.maxSize; i++)
+        for (int i = 0; i < end-start; i++)
         {
             miniArray.add(pointer[start+i]);
         }
@@ -99,19 +103,18 @@ struct Array{
     }
 
     void print(bool endLines = false){
-        cout << "Printing array: "<<endl;
         for(int i=1; i<=len; i++ ){
             cout << pointer[i];
             if( !(endLines || i == len) ){
                 cout << ", ";
-            }else
-            {
-                cout << endl;
+            }else{
+                cout<<endl;
             }
         }
     }
 
-    //Copy assignment operator
+
+    //@brief Copy assignment operator 
     Array& operator=(const Array& other){
         if(this!= &other){
             maxSize = other.maxSize;
@@ -125,8 +128,10 @@ struct Array{
         return *this;
     }
 
-    //Move constructor
+    //@brief Move constructor -- original array's pointer set to nullptr, len and maxSize = 0
     Array(Array<T>&& other) noexcept{
+        std::clog << "[Array move ctor] this=" << this << " from=" << &other 
+                  << " maxSize=" << other.maxSize << "\n";
         pointer = move(other.pointer);
         maxSize = other.maxSize;
         len = other.len;
@@ -136,8 +141,9 @@ struct Array{
         other.maxSize=0;
     }
 
-    //Move assignment operator
+    //@brief Move assignment operator -- original array's pointer set to nullptr, len and maxSize = 0
     Array<T>& operator= (Array<T>&& other) noexcept{
+        clog<<"move assign"<<endl;
         if(this!= &other){
             pointer = move(other.pointer);
             len= other.len;
@@ -150,7 +156,8 @@ struct Array{
     }
 
     ~Array(){
-        
+        std::clog << "[Array dtor] this=" << this << " maxSize=" << maxSize 
+                  << " ptr=" << (pointer ? pointer.get() : nullptr) << "\n";
     }
 
 };
