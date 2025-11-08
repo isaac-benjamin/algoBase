@@ -11,4 +11,4 @@ base: $(execs)
 
 %.exe: %.cpp helpers.hpp
 	$(CXX) $(CXXFLAGS) $< -o $@
-	echo $@
+	echo $@ 
