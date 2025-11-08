@@ -25,11 +25,11 @@ int incrSubSeqDP(Array<int> A){
 }
 
 int main(){
-    // Array<int> input = readInArray<int>();
-    // int max = incrSubSeqDP(input);
-    // cout<<max;
+    Array<int> input = readInArray<int>();
+    int max = incrSubSeqDP(input);
+    cout<<max;
     
-    timeDPfunction(&incrSubSeqDP);
+    // timeDPfunction(&incrSubSeqDP);
 
     return 0;
 }

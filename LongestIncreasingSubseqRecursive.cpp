@@ -3,7 +3,6 @@
 
 #include "TimeTrack.cpp"
 #include "helpers.hpp"
-#include "ArrayOfArrays.hpp"
 #include <cassert>
 
 using namespace std;
@@ -28,7 +27,7 @@ a1, a2, . . . , aj
 Array<int> incrSubSeqRecursive(Array<int>& A, int endIndex){
 
     int endElem = A.get(endIndex);
-    ArrayOfArrays<int> subsequences(endIndex-1);
+    Array< Array<int>> subsequences(endIndex-1);
 
     for (int i = endIndex-1; i >= 1; i--){
         if(A.get(i)<endElem){
@@ -53,14 +52,14 @@ int main(){
     Array<int> input = readInArray<int>();
     Array<int> maxSubseq = incrSubSeqRecursive(input,input.len);
     int maxLen = maxSubseq.len;
-    // for (int i = 1; i <= input.len; i++)
-    // {
-    //     int currentSubLen = incrSubSeqRecursive(input,i).len;
-    //     if( maxLen < currentSubLen ){
-    //         maxLen = currentSubLen;
-    //     }
-    //     // cout<<i;
-    // }
+    for (int i = 1; i <= input.len; i++)
+    {
+        int currentSubLen = incrSubSeqRecursive(input,i).len;
+        if( maxLen < currentSubLen ){
+            maxLen = currentSubLen;
+        }
+        // cout<<i;
+    }
     
     cout << maxLen;
 

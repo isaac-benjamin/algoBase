@@ -16,7 +16,6 @@ struct Array{
     int maxSize; // Max allocated size of the arrray  (Not including 0 index)
 
     Array(int size=0){ //Size is number of open slots after the 0 index
-        std::clog << "[Array default ctor] this=" << this << " size=" << size << "\n";
         pointer = make_unique<T[]>(size+1);
         len=0;
         maxSize = size;
@@ -24,8 +23,6 @@ struct Array{
 
     // @brief Copy constructor (take const ref and allocate same capacity as original)
     Array(const Array<T>& original){
-        std::clog << "[Array copy ctor] this=" << this << " from=" << &original 
-                  << " maxSize=" << original.maxSize << "\n";
         maxSize = original.maxSize;
         pointer = make_unique<T[]>(original.maxSize + 1);
         len = original.len;
@@ -36,7 +33,7 @@ struct Array{
 
     int add(const T& newItem){
         if(len == maxSize){
-            return -1;
+            throw out_of_range("The array is at capacity");
         }else{
             len++;
             pointer[len] = newItem;
@@ -44,6 +41,16 @@ struct Array{
         }
     }
 
+    int add(const T&& newItem){
+        if(len == maxSize){
+            throw out_of_range("The array is at capacity");
+        }else{
+            len++;
+            pointer[len] = move(newItem);
+            return len;
+        }
+    }
+    
     // @brief Adds the contents of the passed array to the current array
     int add(const Array<T>& otherArray){
         if(len + otherArray.len > maxSize){
@@ -77,7 +84,6 @@ struct Array{
             throw out_of_range("Invalid range, index must be between 0 and length");
         }
     }
-        // accessor
     
     void removeAll(){
         len=0;
@@ -130,8 +136,6 @@ struct Array{
 
     //@brief Move constructor -- original array's pointer set to nullptr, len and maxSize = 0
     Array(Array<T>&& other) noexcept{
-        std::clog << "[Array move ctor] this=" << this << " from=" << &other 
-                  << " maxSize=" << other.maxSize << "\n";
         pointer = move(other.pointer);
         maxSize = other.maxSize;
         len = other.len;
@@ -143,21 +147,16 @@ struct Array{
 
     //@brief Move assignment operator -- original array's pointer set to nullptr, len and maxSize = 0
     Array<T>& operator= (Array<T>&& other) noexcept{
-        clog<<"move assign"<<endl;
         if(this!= &other){
             pointer = move(other.pointer);
             len= other.len;
             maxSize=other.maxSize;
 
+            other.pointer = nullptr;
             other.maxSize = 0;
             other.len = 0;
         }
         return *this;
-    }
-
-    ~Array(){
-        std::clog << "[Array dtor] this=" << this << " maxSize=" << maxSize 
-                  << " ptr=" << (pointer ? pointer.get() : nullptr) << "\n";
     }
 
 };
