@@ -74,7 +74,7 @@ if not exist %EXPECTED_FILE% (
 
 echo --- Running test with input from: %INPUT_FILE% ---
 
-REM Run the test itself
+REM Run the test itself 
 "%EXECUTABLE%" < "%INPUT_FILE%" > "%OUTPUT_FILE%"
 
 REM Check the exit status of the previous command

@@ -8,5 +8,6 @@ execs := $(patsubst %.cpp,%.exe,$(src))
 base: $(execs)
 	echo $^
 
-%.exe: %.cpp
-	$(CXX) $(CXXFLAGS) $< -o $@ 
+%.exe: %.cpp helpers.hpp
+	$(CXX) $(CXXFLAGS) $< -o $@
+	echo $@ 
