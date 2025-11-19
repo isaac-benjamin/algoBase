@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -g
+CXXFLAGS = -g -lcpptrace
 src := $(wildcard *.cpp)
 execs := $(patsubst %.cpp,%.exe,$(src))
 

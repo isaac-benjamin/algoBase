@@ -1,8 +1,8 @@
 #pragma once
 #include <iostream>
 #include <climits> 
-#include <bits/stdc++.h>
 #include <memory>
+#include <string>
 
 using namespace std;
 
@@ -11,27 +11,36 @@ using namespace std;
 template <typename T>
 struct Array{
     //Change this to be a unique pointer
-    unique_ptr<T[]> pointer;
+    unique_ptr<shared_ptr<T>[]> pointer;
     int len; // Amount of objects currently in the array (Not including 0 index)
     int maxSize; // Max allocated size of the arrray  (Not including 0 index)
 
     Array(int size=0){ //Size is number of open slots after the 0 index
-        pointer = make_unique<T[]>(size+1);
+        pointer = make_unique<shared_ptr<T>[]>(size+1);
         len=0;
         maxSize = size;
     }
 
+    /* @brief This constructor takes a  */
+    Array(int size, T defaultVal):Array(size){
+        for (int i = 0; i < size; i++){
+            add(make_shared<T>(defaultVal));
+        }
+        
+    }
+
     // @brief Copy constructor (take const ref and allocate same capacity as original)
     Array(const Array<T>& original){
+        // cout<<"copy constructor "<<original.len<<endl;
         maxSize = original.maxSize;
-        pointer = make_unique<T[]>(original.maxSize + 1);
+        pointer = make_unique<shared_ptr<T>[]>(original.maxSize + 1);
         len = original.len;
         for (int i = 1; i <= original.len; i++){
             pointer[i] = original.get(i);
         }
     }
 
-    int add(const T& newItem){
+    int add (shared_ptr<T> newItem){
         if(len == maxSize){
             throw out_of_range("The array is at capacity");
         }else{
@@ -41,15 +50,6 @@ struct Array{
         }
     }
 
-    int add(const T&& newItem){
-        if(len == maxSize){
-            throw out_of_range("The array is at capacity");
-        }else{
-            len++;
-            pointer[len] = move(newItem);
-            return len;
-        }
-    }
     
     // @brief Adds the contents of the passed array to the current array
     int add(const Array<T>& otherArray){
@@ -57,19 +57,21 @@ struct Array{
             throw out_of_range("The addend array has to many elements to fit within max size");
             return -1;
         }
-        for (int i = 1; i <= otherArray.len; i++)
-        {
+        for (int i = 1; i <= otherArray.len; i++){
             add(otherArray.get(i));
         }
         return len;
         
     }
 
+    /*
+    @brief removes the pointer at the index len from the list
+    */
     T remove (){
         return pointer[len--];
     }
 
-    void set (int index, T val){
+    void set (int index, shared_ptr<T> val){
         if (index<=len && index>0){
             pointer[index]=val;
         }else{
@@ -77,17 +79,17 @@ struct Array{
         }
     }
 
-    T get (int index) const {
+    shared_ptr<T> get (int index) const {
         if(index >= 0 && index <= len){
             return pointer[index];
         } else {
-            throw out_of_range("Invalid range, index must be between 0 and length");
+            throw out_of_range("Invalid range, index must be between 0 and length\n Supplied index: "+to_string(index));
         }
     }
     
     void removeAll(){
         len=0;
-        pointer = make_unique<T[]>(maxSize+1);
+        pointer = make_unique<shared_ptr<T>[]>(maxSize+1);
     }
 
     void setZeroth (T element){
@@ -110,7 +112,7 @@ struct Array{
 
     void print(bool endLines = false){
         for(int i=1; i<=len; i++ ){
-            cout << pointer[i];
+            cout << *pointer[i];
             if( !(endLines || i == len) ){
                 cout << ", ";
             }else{
@@ -123,8 +125,9 @@ struct Array{
     //@brief Copy assignment operator 
     Array& operator=(const Array& other){
         if(this!= &other){
+            // cout<<"Copy operator";
             maxSize = other.maxSize;
-            pointer = make_unique<T[]>(other.maxSize+1);
+            pointer = make_unique<shared_ptr<T>[]>(other.maxSize+1);
             len = other.len;
 
             for (int i = 1; i <= len; i++){
