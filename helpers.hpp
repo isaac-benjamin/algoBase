@@ -11,7 +11,7 @@ using namespace std;
 template <typename T>
 struct Array{
     //Change this to be a unique pointer
-    unique_ptr<shared_ptr<T>[]> pointer;
+    unique_ptr<shared_ptr<T>[]> pointer; 
     int len; // Amount of objects currently in the array (Not including 0 index)
     int maxSize; // Max allocated size of the arrray  (Not including 0 index)
 

@@ -16,7 +16,7 @@ base: $(execs)
 %.exe: %.cpp
 	$(CXX) $(CXXFLAGS) $< -o $@
 	echo $@ compiled
-
+ 
 %.d: %.cpp
 	$(CXX) -MM -MP -MT $(patsubst %.cpp,%.exe,$<) $< > $@
 	echo $@ updated

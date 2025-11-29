@@ -8,7 +8,7 @@ template <typename T>
 struct Node{
     shared_ptr<Node> next =nullptr;
     shared_ptr<Node> prev;
-    shared_ptr<T> info;
+    shared_ptr<T> info; 
 
     /*
     @brief This constructor takes a raw T value and optionally the previous node

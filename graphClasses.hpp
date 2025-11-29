@@ -8,7 +8,7 @@ using namespace std;
 template <typename T, typename V = shared_ptr<T>>
 struct Vertex{
     int id;
-    V info; //Problem specific content
+    V info; //Problem specific con tent
 
     Vertex(int idNum){
         id = idNum;
