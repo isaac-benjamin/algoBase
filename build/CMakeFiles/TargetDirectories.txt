@@ -1,7 +1,0 @@
-C:/Users/isaac/RIT/Sem5/Algo/Homeworks/hw5/algoBase/build/CMakeFiles/numPaths.dir
-C:/Users/isaac/RIT/Sem5/Algo/Homeworks/hw5/algoBase/build/CMakeFiles/INSTALL.dir
-C:/Users/isaac/RIT/Sem5/Algo/Homeworks/hw5/algoBase/build/CMakeFiles/ALL_BUILD.dir
-C:/Users/isaac/RIT/Sem5/Algo/Homeworks/hw5/algoBase/build/CMakeFiles/ZERO_CHECK.dir
-C:/Users/isaac/RIT/Sem5/Algo/Homeworks/hw5/algoBase/build/_deps/cpptrace-build/CMakeFiles/cpptrace-lib.dir
-C:/Users/isaac/RIT/Sem5/Algo/Homeworks/hw5/algoBase/build/_deps/cpptrace-build/CMakeFiles/INSTALL.dir
-C:/Users/isaac/RIT/Sem5/Algo/Homeworks/hw5/algoBase/build/_deps/cpptrace-build/CMakeFiles/ALL_BUILD.dir

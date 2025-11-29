@@ -1,3 +1,0 @@
-C:/Users/isaac/RIT/Sem5/Algo/Homeworks/hw5/algoBase/build/_deps/cpptrace-subbuild/CMakeFiles/cpptrace-populate.dir
-C:/Users/isaac/RIT/Sem5/Algo/Homeworks/hw5/algoBase/build/_deps/cpptrace-subbuild/CMakeFiles/ALL_BUILD.dir
-C:/Users/isaac/RIT/Sem5/Algo/Homeworks/hw5/algoBase/build/_deps/cpptrace-subbuild/CMakeFiles/ZERO_CHECK.dir
