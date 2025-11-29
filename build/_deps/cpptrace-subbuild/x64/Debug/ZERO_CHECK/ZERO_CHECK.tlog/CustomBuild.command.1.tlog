@@ -1,0 +1,10 @@
+^C:\USERS\ISAAC\RIT\SEM5\ALGO\HOMEWORKS\HW5\ALGOBASE\BUILD\_DEPS\CPPTRACE-SUBBUILD\CMAKEFILES\50C22631CF279895BB9EA1CE3A990514\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/isaac/RIT/Sem5/Algo/Homeworks/hw5/algoBase/build/_deps/cpptrace-subbuild -BC:/Users/isaac/RIT/Sem5/Algo/Homeworks/hw5/algoBase/build/_deps/cpptrace-subbuild --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/isaac/RIT/Sem5/Algo/Homeworks/hw5/algoBase/build/_deps/cpptrace-subbuild/cpptrace-populate.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

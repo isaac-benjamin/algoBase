@@ -10,4 +10,16 @@ base: $(execs)
 
 %.exe: %.cpp helpers.hpp
 	$(CXX) $(CXXFLAGS) $< -o $@
-	echo $@ 
+	echo $@ compiled
+ 
+%.d: %.cpp
+	$(CXX) -MM -MP -MT $(patsubst %.cpp,%.exe,$<) $< > $@
+	echo $@ updated
+
+cleanDeps:
+	rm -f $(dependencies)
+
+announce:
+	echo src: $(src)
+	echo execs: $(execs)
+	echo dependencies: $(dependencies)

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\isaac\RIT\Sem5\Algo\Homeworks\hw5\algoBase\build\CMakeFiles\0397b5f540506ed06414f08cd5dbb965\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{B3E420B3-897E-318E-86A9-3A48F8BF5570}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

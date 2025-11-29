@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "C:/Users/isaac/RIT/Sem5/Algo/Homeworks/hw5/algoBase/build/_deps/cpptrace-subbuild/CMakeFiles/cpptrace-populate"
+		},
+		{
+			"file" : "C:/Users/isaac/RIT/Sem5/Algo/Homeworks/hw5/algoBase/build/_deps/cpptrace-subbuild/CMakeFiles/50c22631cf279895bb9ea1ce3a990514/cpptrace-populate.rule"
+		},
+		{
+			"file" : "C:/Users/isaac/RIT/Sem5/Algo/Homeworks/hw5/algoBase/build/_deps/cpptrace-subbuild/CMakeFiles/b1df035f7c0936be39be62a5454ec0a5/cpptrace-populate-complete.rule"
+		},
+		{
+			"file" : "C:/Users/isaac/RIT/Sem5/Algo/Homeworks/hw5/algoBase/build/_deps/cpptrace-subbuild/CMakeFiles/3d69f8de5ba05b2bff0236baa27a8616/cpptrace-populate-build.rule"
+		},
+		{
+			"file" : "C:/Users/isaac/RIT/Sem5/Algo/Homeworks/hw5/algoBase/build/_deps/cpptrace-subbuild/CMakeFiles/3d69f8de5ba05b2bff0236baa27a8616/cpptrace-populate-configure.rule"
+		},
+		{
+			"file" : "C:/Users/isaac/RIT/Sem5/Algo/Homeworks/hw5/algoBase/build/_deps/cpptrace-subbuild/CMakeFiles/3d69f8de5ba05b2bff0236baa27a8616/cpptrace-populate-download.rule"
+		},
+		{
+			"file" : "C:/Users/isaac/RIT/Sem5/Algo/Homeworks/hw5/algoBase/build/_deps/cpptrace-subbuild/CMakeFiles/3d69f8de5ba05b2bff0236baa27a8616/cpptrace-populate-install.rule"
+		},
+		{
+			"file" : "C:/Users/isaac/RIT/Sem5/Algo/Homeworks/hw5/algoBase/build/_deps/cpptrace-subbuild/CMakeFiles/3d69f8de5ba05b2bff0236baa27a8616/cpptrace-populate-mkdir.rule"
+		},
+		{
+			"file" : "C:/Users/isaac/RIT/Sem5/Algo/Homeworks/hw5/algoBase/build/_deps/cpptrace-subbuild/CMakeFiles/3d69f8de5ba05b2bff0236baa27a8616/cpptrace-populate-patch.rule"
+		},
+		{
+			"file" : "C:/Users/isaac/RIT/Sem5/Algo/Homeworks/hw5/algoBase/build/_deps/cpptrace-subbuild/CMakeFiles/3d69f8de5ba05b2bff0236baa27a8616/cpptrace-populate-test.rule"
+		},
+		{
+			"file" : "C:/Users/isaac/RIT/Sem5/Algo/Homeworks/hw5/algoBase/build/_deps/cpptrace-subbuild/CMakeFiles/3d69f8de5ba05b2bff0236baa27a8616/cpptrace-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"cpptrace-populate"
+		],
+		"name" : "cpptrace-populate"
+	}
+}

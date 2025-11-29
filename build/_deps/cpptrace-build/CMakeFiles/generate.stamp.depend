@@ -1,0 +1,34 @@
+# CMake generation dependency list for this directory.
+C:/Program Files/CMake/share/cmake-4.2/Modules/BasicConfigVersion-SameMajorVersion.cmake.in
+C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeCInformation.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeCommonLanguageInclude.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeLanguageInformation.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/CMakePackageConfigHelpers.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/CheckCXXCompilerFlag.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/CheckCXXSourceCompiles.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/Compiler/CMakeCommonCompilerMacros.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/Compiler/MSVC-C.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/Compiler/MSVC.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/GNUInstallDirs.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/Internal/CMakeCLinkerInformation.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/Internal/CMakeCommonLinkerInformation.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/Internal/CheckCompilerFlag.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/Internal/CheckFlagCommonConfig.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/Internal/CheckSourceCompiles.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/Linker/MSVC-C.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/Linker/MSVC.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/Platform/Linker/Windows-MSVC-C.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/Platform/Linker/Windows-MSVC.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/Platform/Windows-MSVC-C.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/Platform/Windows-MSVC.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/WriteBasicConfigVersionFile.cmake
+C:/Users/isaac/RIT/Sem5/Algo/Homeworks/hw5/algoBase/build/CMakeFiles/4.2.0-rc2/CMakeCCompiler.cmake
+C:/Users/isaac/RIT/Sem5/Algo/Homeworks/hw5/algoBase/build/_deps/cpptrace-src/CMakeLists.txt
+C:/Users/isaac/RIT/Sem5/Algo/Homeworks/hw5/algoBase/build/_deps/cpptrace-src/cmake/Autoconfig.cmake
+C:/Users/isaac/RIT/Sem5/Algo/Homeworks/hw5/algoBase/build/_deps/cpptrace-src/cmake/InstallRules.cmake
+C:/Users/isaac/RIT/Sem5/Algo/Homeworks/hw5/algoBase/build/_deps/cpptrace-src/cmake/OptionVariables.cmake
+C:/Users/isaac/RIT/Sem5/Algo/Homeworks/hw5/algoBase/build/_deps/cpptrace-src/cmake/PreventInSourceBuilds.cmake
+C:/Users/isaac/RIT/Sem5/Algo/Homeworks/hw5/algoBase/build/_deps/cpptrace-src/cmake/ProjectIsTopLevel.cmake
+C:/Users/isaac/RIT/Sem5/Algo/Homeworks/hw5/algoBase/build/_deps/cpptrace-src/cmake/in/cpptrace-config-cmake.in
+C:/Users/isaac/RIT/Sem5/Algo/Homeworks/hw5/algoBase/build/_deps/cpptrace-src/cmake/in/version-hpp.in

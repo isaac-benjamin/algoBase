@@ -1,0 +1,8 @@
+{
+	"InstallScripts" : 
+	[
+		"C:/Users/isaac/RIT/Sem5/Algo/Homeworks/hw5/algoBase/build/cmake_install.cmake",
+		"C:/Users/isaac/RIT/Sem5/Algo/Homeworks/hw5/algoBase/build/_deps/cpptrace-build/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
