@@ -7,63 +7,93 @@
 
 using namespace std;
 
-struct DFS_Vertex{
-    shared_ptr<Vertex> vertex;
-    int depth;
+struct Depth_Info{
+    int depth=0;
+    int pathsTo=0;
 
-    // DFS_Vertex(shared_ptr<Vertex> vertex, int depth):vertex(vertex), depth(depth){
-        
-    // }
+    void addPaths(int morePaths){
+        pathsTo+=morePaths;
+    }
+
+    void setDepth(int depth){
+        this->depth=depth;
+    }
+
 };
 
 int findMinPaths(AdjacencyList * graph, int startIndex, int endIndex){
     shared_ptr<Vertex> start = graph->get(startIndex);
     shared_ptr<Vertex> end = graph->get(endIndex);
-    Array<bool> visited(graph->n,false);
+    bool * visited = new bool[graph->n];
+    for (int i = 0; i < graph->n; i++){
+        visited[i] = false;
+    }
+    visited[startIndex-1]=true;
 
+    Array<Depth_Info> depthArray = Array<Depth_Info>(graph->n, {0,1});
+    
     //DFS
-    LinkedList<DFS_Vertex> queue({start,0});
-    int finalDepthToCheck=INT_MAX;
+    LinkedList<Vertex> queue(start);
     int paths = 0;
-
+    int depthBeforeEnd=INT_MAX;
+    int lowestDepth = 0;
+    
     //If the next node you are inspecting was discovered at the same depth as the goal stop searching 
-    while( finalDepthToCheck < queue.head->getInfo()->depth ){
-        shared_ptr<DFS_Vertex> head = queue.pop()->getInfo();
-        Array<Vertex> neighbors = head->vertex->getNeighbors();
-        int headDepth = head->depth;
+    while( lowestDepth <= depthBeforeEnd && !queue.isEmpty()){
+        
+        shared_ptr<Vertex> head = queue.pop()->getInfo();
+        Array<Vertex> neighbors = head->getNeighbors();
+
+        shared_ptr<Depth_Info> headDepthInfo = depthArray.get(head->id);
+        lowestDepth = headDepthInfo->depth;
 
         for (int i = 1; i <= neighbors.len; i++){
             shared_ptr<Vertex> vert = neighbors.get(i);
-            auto seen = visited.get(i);
-            if(!seen){
-                queue.tailAdd( {vert,headDepth+1} );
-                *seen = true;
-            }
-            if(vert==end){
-                finalDepthToCheck=headDepth;
-                paths++;
+
+            int id = vert->id; //ID of the neighbor
+            shared_ptr<Depth_Info> depthStats = depthArray.get(id);
+            
+            if(!visited[id-1]){
+                queue.tailAdd(vert);
+                visited[id-1]=true; 
+                depthStats->depth = headDepthInfo->depth + 1;
+                depthStats->pathsTo = headDepthInfo->pathsTo;
+                
+                if(id==endIndex){
+                    depthBeforeEnd = headDepthInfo->depth;
+                }
+
+            }else if( depthStats->depth == headDepthInfo->depth+1){
+                depthStats->addPaths(headDepthInfo->pathsTo);
             }
             
         }
         
     }
 
-    return paths;
+    delete[] visited;
+    return depthArray.get(endIndex)->pathsTo;
     
 }
 
 int main(){ 
-
+    
     int n,m;
-    cin>>n,m;
+    cin>>n>>m;
 
+    
     int s,t;
-    cin>>s,t;
+    cin>>s>>t;
 
-    AdjacencyList graph (n,m);
-    graph.readIn();
+    AdjacencyList * graph = new AdjacencyList(n,m);
+    graph->readIn();
 
-    int paths = findMinPaths( &graph, s,t);
+    // graph->print();
+    
+    int paths = findMinPaths(graph, s,t);
+    cout<<paths;
 
+    delete graph;
+ 
     return 0;
 }

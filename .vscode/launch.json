@@ -9,7 +9,32 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
-            "args": ["<","text_in/input-1.1.txt"],
+            "args": ["<","text_in/input-3.1.txt"],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "C:\\Whatnot\\mingw64\\bin\\gdb.exe",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "Cmake debugging",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}\\build\\Debug\\${fileBasenameNoExtension}.exe",
+            "args": ["<","text_in/input-2.1.txt"],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],

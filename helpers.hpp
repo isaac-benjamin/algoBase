@@ -6,7 +6,7 @@
 
 using namespace std;
 
-
+ 
 // This array starts at 1 and leaves the 0th index free
 template <typename T>
 struct Array{
@@ -19,19 +19,17 @@ struct Array{
         pointer = make_unique<shared_ptr<T>[]>(size+1);
         len=0;
         maxSize = size;
-    }
-
+    } 
+ 
     /* @brief This constructor takes a  */
     Array(int size, T defaultVal):Array(size){
         for (int i = 0; i < size; i++){
             add(make_shared<T>(defaultVal));
-        }
-        
+        } 
     }
 
     // @brief Copy constructor (take const ref and allocate same capacity as original)
-    Array(const Array<T>& original){
-        // cout<<"copy constructor "<<original.len<<endl;
+    Array(const Array<T>& original){  
         maxSize = original.maxSize;
         pointer = make_unique<shared_ptr<T>[]>(original.maxSize + 1);
         len = original.len;
@@ -83,6 +81,7 @@ struct Array{
         if(index >= 0 && index <= len){
             return pointer[index];
         } else {
+            // cpptrace::generate_trace().print();
             throw out_of_range("Invalid range, index must be between 0 and length\n Supplied index: "+to_string(index));
         }
     }
@@ -112,7 +111,7 @@ struct Array{
 
     void print(bool endLines = false){
         for(int i=1; i<=len; i++ ){
-            cout << *pointer[i];
+            cout << pointer[i];
             if( !(endLines || i == len) ){
                 cout << ", ";
             }else{
@@ -120,7 +119,6 @@ struct Array{
             }
         }
     }
-
 
     //@brief Copy assignment operator 
     Array& operator=(const Array& other){

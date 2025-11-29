@@ -42,7 +42,7 @@ int main(){
 
     int n,m;
     cin>>n>>m;
-    graph = AdjacencyList(n,m);
+    graph = AdjacencyList(n,m); 
     graph.readIn();
     // graph.print();
     // cout<<endl;

@@ -1,19 +1,23 @@
 #pragma once
 #include <memory>
+#include <iostream>
 
 #include "graphClasses.hpp"
 
 using namespace std;
 
-struct AdjVertex: public Vertex{
-    Array<Vertex> neighbors;
+template<typename T, typename V=shared_ptr<T>>
+struct AdjVertex: public Vertex<T, V>{
+    Array<AdjVertex> neighbors;
 
-    AdjVertex(int idNum, int n): Vertex(idNum){
-        neighbors= Array<Vertex>(n);
+    AdjVertex(int idNum, int n, V info = nullptr): Vertex<T,V>(idNum, info){
+        neighbors= Array<AdjVertex>(n);
     }
+    
 
-    Array<Vertex> getNeighbors() override{
-        return neighbors;
+    shared_ptr<Array<Vertex>> getNeighbors(){
+        shared_ptr<Array<Vertex>> x = make_shared<Array<Vertex>>(neighbors);
+        return x;
     }
 
     void addNeighbor(shared_ptr<Vertex> vert){
@@ -29,26 +33,27 @@ struct AdjVertex: public Vertex{
         }
         
     }
+
 };
 
+template <typename Info, typename T = AdjVertex<Info>> 
 struct AdjacencyList: public Graph{
     
-    Array<AdjVertex> vertices;
+    Array<T> vertices;
 
-    AdjacencyList(int n, int m):Graph(n,m){
-        vertices = Array<AdjVertex>(n);
+    AdjacencyList(int n, int m, bool directed=false):Graph(n,m,directed){
+        vertices = Array<T>(n);
         for (int i = 1; i <= n; i++){
-            shared_ptr<AdjVertex> x = make_shared<AdjVertex>( AdjVertex(i,n) );
+            shared_ptr<T> x = make_shared<T>( T(i,n) );
             vertices.add(x);
         }
-    
     }
 
-    shared_ptr<Vertex> get(int index){
+    shared_ptr<T> get(int index){
         return vertices.get(index);
     }
 
-    void readIn(){
+    void readIn(string lineEnd){
         int selfLoop = 0;
         for (int i = 0; i <m; i++){
             int v1, v2;
@@ -58,17 +63,18 @@ struct AdjacencyList: public Graph{
                 selfLoop++;
                 continue;
             }
-            shared_ptr<AdjVertex> vert1 = vertices.get(v1);
-            shared_ptr<AdjVertex> vert2 = vertices.get(v2);
+            shared_ptr<T> vert1 = vertices.get(v1);
+            shared_ptr<T> vert2 = vertices.get(v2);
             vert1->addNeighbor(vert2);
-            vert2->addNeighbor(vert1);
+            if(!directed){
+                vert2->addNeighbor(vert1);}
         }
         m-=selfLoop;
     }
 
     void print(){
         for (int i = 1; i <= n; i++){
-            shared_ptr<AdjVertex> x = vertices.get(i);
+            shared_ptr<T> x = vertices.get(i);
             cout<<x->id<<": ";
             x->printNeighbors();
             cout<<endl;
