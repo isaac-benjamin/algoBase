@@ -11,7 +11,7 @@ using namespace std;
 template <typename T>
 struct Array{
     //Change this to be a unique pointer
-    unique_ptr<shared_ptr<T>[]> pointer; 
+    unique_ptr<T[]> pointer;
     int len; // Amount of objects currently in the array (Not including 0 index)
     int maxSize; // Max allocated size of the arrray  (Not including 0 index)
 
@@ -19,6 +19,14 @@ struct Array{
         pointer = make_unique<T[]>(size+1);
         len=0;
         maxSize = size;
+    }
+
+    Array(int size, T defaultValue):Array(size){
+        for (int i = 0; i < size; i++)
+        {
+            add(defaultValue);
+        }
+        
     }
 
     // @brief Copy constructor (take const ref and allocate same capacity as original)
